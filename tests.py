@@ -26,5 +26,7 @@ class TestStripe(unittest.TestCase):
                          'No order.html redirect found on checkout cancel.')
 
 
+ {{ cookiecutter.extra_data }}
+        
 if __name__ == '__main__':
     unittest.main()
