@@ -114,22 +114,29 @@ class AssessmentTestCases(unittest.TestCase):
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
 
+        try:
+            zip_elem = self.driver.find_element_by_id('billingPostalCode')
+        except NoSuchElementException:
+            zip_elem = None
+
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("4242424242424242")
         cardexp_elem.send_keys("0439")
         cardcvc_elem.send_keys("424")
         cardname_elem.send_keys("Selenium Test WebDriver")
 
-        confirm_elem = self.driver.find_element_by_xpath("//button[@type='submit']")
+        if zip_elem:
+            zip_elem.send_keys('12312')
+
+        confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
         confirm_elem.click()
 
-        # session_id_elem = wait.until(
-        #     EC.presence_of_element_located((By.ID, "sessionId"))
-        # )
-        # self.assertIn("order_success.html", self.driver.current_url)
-        # self.assertTrue(session_id_elem.text)
+        session_id_elem = wait.until(
+            EC.presence_of_element_located((By.ID, "sessionId"))
+        )
 
-        return True
+        self.assertIn("order_success.html", self.driver.current_url)
+        self.assertTrue(session_id_elem.text)
 
     def tearDown(self):
         self.driver.close()
