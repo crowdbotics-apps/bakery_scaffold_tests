@@ -17,7 +17,7 @@ class TestAssessment(unittest.TestCase):
 
     def test_assessment_stripe_public_key_has_been_set(self):
         """Check if Stripe key was defined."""
-        pattern = re.compile(r"Stripe\('pk_test_\w{24}'\);", re.I | re.M)
+        pattern = re.compile(r"Stripe\('pk_test_\w+'\);", re.I | re.M)
         res = re.search(pattern, self.dom_str)
         self.assertTrue(res.group())
 
