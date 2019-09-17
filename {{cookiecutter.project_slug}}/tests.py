@@ -73,11 +73,12 @@ class AssessmentTestCases(unittest.TestCase):
         with open("order.html", "r") as file_descriptor:
             self.dom_str = file_descriptor.read()
 
-        CHROMEDRIVER_PATH = os.getenv("GOOGLE_CHROME_SHIM", '/usr/local/bin/chromedriver')
+        CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
         WINDOW_SIZE = "1920,1080"
 
         options = selenium.webdriver.ChromeOptions()
         options.headless = True
+        options.binary_location = '/usr/lib/chromium'
         options.add_argument("--window-size=%s" % WINDOW_SIZE)
         options.add_argument("--disable-gpu")
 
