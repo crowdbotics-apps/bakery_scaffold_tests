@@ -32,14 +32,14 @@ class TestAcceptanceStripe(unittest.TestCase):
     def test_acceptance_checkout_button_was_instantiated(self):
         """Check if checkout button was captured."""
         pattern = re.compile(
-            r"document.getElementById\('checkout-button-sku_\w{14}'\);", re.I | re.M)
+            r"document.getElementById\('checkout-button-sku_}'\);", re.I | re.M)
         res = re.search(pattern, self.dom_str)
         self.assertTrue(hasattr(res, 'group'),
                         msg="You didn't add a checkout button.")
 
     def test_acceptance_sku_item_defined_on_checkout(self):
         """Check if checkout button was captured."""
-        pattern = re.compile(r"items: \[\{sku: 'sku_\w{14}', quantity: \d{1}\}\]",
+        pattern = re.compile(r"items: \[\{sku: 'sku_}', quantity: \d{1}\}\]",
                              re.I | re.M)
         res = re.search(pattern, self.dom_str)
         self.assertTrue(hasattr(res, 'group'),
