@@ -73,14 +73,16 @@ class AssessmentTestCases(unittest.TestCase):
         with open("order.html", "r") as file_descriptor:
             self.dom_str = file_descriptor.read()
 
-        CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+        CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVERDIR')
         WINDOW_SIZE = "1920,1080"
 
         options = selenium.webdriver.ChromeOptions()
         options.headless = True
-        options.binary_location = '/usr/lib/chromium'
+        options.binary_location = os.getenv('CHROME_PATH')
         options.add_argument("--window-size=%s" % WINDOW_SIZE)
         options.add_argument("--disable-gpu")
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
 
         self.driver = webdriver.Chrome(
             executable_path=CHROMEDRIVER_PATH, options=options
