@@ -2,6 +2,8 @@ import os
 import re
 import unittest
 
+from webdriver_manager.chrome import ChromeDriverManager
+
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -83,9 +85,7 @@ class AssessmentTestCases(unittest.TestCase):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
 
-        self.driver = webdriver.Chrome(
-            executable_path=CHROMEDRIVER_PATH, options=options
-        )
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     def _get_button_id(self):
         pattern = re.compile(r"\('checkout-button-sku_'\);", re.I | re.M)
@@ -117,7 +117,7 @@ class AssessmentTestCases(unittest.TestCase):
 
         try:
             zip_elem = self.driver.find_element_by_id('billingPostalCode')
-        except NoSuchElementException:
+        except:
             zip_elem = None
 
         email_elem.send_keys("assessment@test.com.br")
