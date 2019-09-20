@@ -78,7 +78,6 @@ class AssessmentTestCases(unittest.TestCase):
 
         options = selenium.webdriver.ChromeOptions()
         options.headless = True
-#         options.binary_location = os.getenv('CHROME_PATH')
         options.add_argument("--window-size=%s" % WINDOW_SIZE)
         options.add_argument("--disable-gpu")
         options.add_argument('--no-sandbox')
