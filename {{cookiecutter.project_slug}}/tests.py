@@ -84,7 +84,7 @@ class AssessmentTestCases(unittest.TestCase):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
 
-        driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'), options=options)
+        self.driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'), options=options)
 
     def _get_button_id(self):
         pattern = re.compile(r"\('checkout-button-sku_'\);", re.I | re.M)
