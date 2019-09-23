@@ -2,8 +2,6 @@ import os
 import re
 import unittest
 
-from webdriver_manager.chrome import ChromeDriverManager
-
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -75,17 +73,18 @@ class AssessmentTestCases(unittest.TestCase):
         with open("order.html", "r") as file_descriptor:
             self.dom_str = file_descriptor.read()
 
-        CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVERDIR')
+
         WINDOW_SIZE = "1920,1080"
 
         options = selenium.webdriver.ChromeOptions()
         options.headless = True
+        options.binary_location = os.getenv('CHROME_BIN')
         options.add_argument("--window-size=%s" % WINDOW_SIZE)
         options.add_argument("--disable-gpu")
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
 
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver = webdriver.Chrome(os.getenv('CHROMEDRIVER_PATH'), options=options)
 
     def _get_button_id(self):
         pattern = re.compile(r"\('checkout-button-sku_'\);", re.I | re.M)
