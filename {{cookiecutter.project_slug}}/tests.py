@@ -102,7 +102,7 @@ class AssessmentTestCases(unittest.TestCase):
         res = re.search(pattern, self.dom_str)
         return ":".join(res.group().split(": ")[1:]).strip("'")
 
-    def test_assessment_successful_payment_on_the_checkout_page_redirects_to_order_html(
+    def test_successful_payment_on_the_checkout_page_redirects_to_order_html__clientcheckout__1(
         self
     ):
         self.driver.get(self._get_url())
