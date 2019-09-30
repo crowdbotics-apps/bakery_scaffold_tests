@@ -109,6 +109,7 @@ class AssessmentTestCases(unittest.TestCase):
 
         return stripe.Event.retrieve(event)
 
+
     def _get_success_url(self):
         pattern = re.compile(r"^(https\:\/\/)(.*)/order_success\?session_id=(.*)$")
         return pattern
@@ -151,10 +152,82 @@ class AssessmentTestCases(unittest.TestCase):
         assert re.match(self._get_success_url(), self.driver.current_url)
         self.assertTrue(session_id_elem.text)
 
+    def test__successful_payment_on_the_checkout_page_creates_a_payment_intent_on_server__payment__2(
+        self
+    ):
+        self.driver.get(self._get_url())
+        wait = WebDriverWait(self.driver, 20)
+
+        amount_elem = self.driver.find_element_by_id("productAmount")
+        formatted_amount = amount_elem.text.replace('$', '')
+        formatted_amount = formatted_amount.replace('.', '')
+
+        elem = wait.until(EC.presence_of_element_located((By.ID, self._get_button_id())))
+        elem.click()
+
+        email_elem = wait.until(EC.presence_of_element_located((By.ID, "email")))
+
+        cardnum_elem = self.driver.find_element_by_id("cardNumber")
+        cardexp_elem = self.driver.find_element_by_id("cardExpiry")
+        cardcvc_elem = self.driver.find_element_by_id("cardCvc")
+        cardname_elem = self.driver.find_element_by_id("billingName")
+
+        email_elem.send_keys("assessment@test.com.br")
+        cardnum_elem.send_keys("555555555555")
+        cardnum_elem.click()
+        cardnum_elem.send_keys("4444")
+        cardexp_elem.send_keys("0439")
+        cardcvc_elem.send_keys("424")
+        cardname_elem.send_keys("Selenium Test WebDriver")
+
+        confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
+        confirm_elem.click()
+
+        session_id_elem = wait.until(
+            EC.presence_of_element_located((By.ID, "sessionId"))
+        )
+
         payment_intent = self._check_webhook_data()
 
         self.assertEqual(payment_intent.get('status'), "succeeded")
         self.assertEqual(int(payment_intent.get('amount_received')), int(formatted_amount))
+
+    def test__successful_payment_should_have_no_pending_webhooks__webhook__2(
+        self
+    ):
+        self.driver.get(self._get_url())
+        wait = WebDriverWait(self.driver, 20)
+
+        amount_elem = self.driver.find_element_by_id("productAmount")
+        formatted_amount = amount_elem.text.replace('$', '')
+        formatted_amount = formatted_amount.replace('.', '')
+
+        elem = wait.until(EC.presence_of_element_located((By.ID, self._get_button_id())))
+        elem.click()
+
+        email_elem = wait.until(EC.presence_of_element_located((By.ID, "email")))
+
+        cardnum_elem = self.driver.find_element_by_id("cardNumber")
+        cardexp_elem = self.driver.find_element_by_id("cardExpiry")
+        cardcvc_elem = self.driver.find_element_by_id("cardCvc")
+        cardname_elem = self.driver.find_element_by_id("billingName")
+
+        email_elem.send_keys("assessment@test.com.br")
+        cardnum_elem.send_keys("555555555555")
+        cardnum_elem.click()
+        cardnum_elem.send_keys("4444")
+        cardexp_elem.send_keys("0439")
+        cardcvc_elem.send_keys("424")
+        cardname_elem.send_keys("Selenium Test WebDriver")
+
+        confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
+        confirm_elem.click()
+
+        session_id_elem = wait.until(
+            EC.presence_of_element_located((By.ID, "sessionId"))
+        )
+
+        payment_intent = self._check_webhook_data()
 
         response = self._retrieve_stripe_event(payment_intent.get('id'))
 
