@@ -201,7 +201,7 @@ class AssessmentTestCases(unittest.TestCase):
         return res.group().split("'")[1]
 
     def _get_url(self):
-        return {{cookiecutter.domain}}
+        return "{{cookiecutter.domain}}"
 
     def _check_webhook_data(self):
         x = urllib.request.urlopen(f'{self._get_url()}/payment_intent')
