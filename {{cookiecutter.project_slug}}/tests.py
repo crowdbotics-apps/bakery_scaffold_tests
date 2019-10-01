@@ -156,7 +156,7 @@ class TestAST(unittest.TestCase):
         with open('client/order.html', 'r') as file_descriptor:
             self.order_html_str = file_descriptor.read()
 
-    def test_use_correct_product(self):
+    def test_ast_use_correct_product(self):
         pattern = re.compile(
             r"product = (\"|'){{ cookiecutter.product }}(\"|')",
             re.I | re.M
@@ -165,7 +165,7 @@ class TestAST(unittest.TestCase):
 
         self.assertTrue(hasattr(res, 'group'))
 
-    def test_use_correct_amount(self):
+    def test_ast_use_correct_amount(self):
         pattern = re.compile(
             r"amount = {{ cookiecutter.amount }}",
             re.I | re.M
