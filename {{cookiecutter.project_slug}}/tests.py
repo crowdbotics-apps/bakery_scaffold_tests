@@ -208,7 +208,7 @@ class AssessmentTestCases(unittest.TestCase):
         return json.loads(x.read())
 
     def _retrieve_stripe_event(self, event):
-        stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
+        stripe.api_key = "{{cookiecutter.access_token}}"
 
         return stripe.Event.retrieve(event)
 

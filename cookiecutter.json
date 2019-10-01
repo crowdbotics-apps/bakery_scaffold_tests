@@ -3,5 +3,6 @@
     "project_slug": "scaffold_tests",
     "product": "",
     "amount": "",
-    "domain": ""
+    "domain": "",
+    "access_token": ""
 }
