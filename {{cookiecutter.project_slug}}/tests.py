@@ -64,7 +64,7 @@ class TestAcceptanceStripe(unittest.TestCase):
     def test_acceptance_checkout_button_was_instantiated(self):
         """Check if checkout button was captured."""
         pattern = re.compile(
-            r"document.getElementById\((\"|')checkout-button-sku_\w{14}(\"|')\);",
+            r"document.getElementById\((\"|')checkout-button(\"|')\);",
             re.I | re.M
         )
 
