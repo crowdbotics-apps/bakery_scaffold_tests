@@ -254,7 +254,7 @@ class AssessmentTestCases(unittest.TestCase):
         assert re.match(self._get_success_url(), self.driver.current_url)
         self.assertTrue(session_id_elem.text)
 
-    def test__successful_payment_on_the_checkout_page_creates_a_payment_intent_on_server__payment__2(
+    def test__successful_payment_on_the_checkout_page_creates_a_payment_intent_on_server__payments__2(
         self
     ):
         self.driver.get(self._get_url())
@@ -294,7 +294,7 @@ class AssessmentTestCases(unittest.TestCase):
         self.assertEqual(payment_intent.get('status'), "succeeded")
         self.assertEqual(int(payment_intent.get('amount_received')), int(formatted_amount))
 
-    def test__successful_payment_should_have_no_pending_webhooks__webhook__2(
+    def test__successful_payment_should_have_no_pending_webhooks__webhooks__2(
         self
     ):
         self.driver.get(self._get_url())
