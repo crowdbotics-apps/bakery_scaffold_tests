@@ -236,7 +236,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
-        select = Select(driver.find_element_by_id("billingCountry"))
+        select = Select(self.driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
@@ -276,7 +276,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
-        select = Select(driver.find_element_by_id("billingCountry"))
+        select = Select(self.driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
@@ -318,7 +318,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
-        select = Select(driver.find_element_by_id("billingCountry"))
+        select = Select(self.driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
