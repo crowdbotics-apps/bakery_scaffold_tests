@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 
 
 
@@ -235,6 +236,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
+        select = Select(driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
@@ -243,6 +245,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem.send_keys("0439")
         cardcvc_elem.send_keys("424")
         cardname_elem.send_keys("Selenium Test WebDriver")
+        select.select_by_value("PH")
 
         confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
         confirm_elem.click()
@@ -273,6 +276,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
+        select = Select(driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
@@ -281,6 +285,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem.send_keys("0439")
         cardcvc_elem.send_keys("424")
         cardname_elem.send_keys("Selenium Test WebDriver")
+        select.select_by_value("PH")
 
         confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
         confirm_elem.click()
@@ -313,6 +318,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem = self.driver.find_element_by_id("cardExpiry")
         cardcvc_elem = self.driver.find_element_by_id("cardCvc")
         cardname_elem = self.driver.find_element_by_id("billingName")
+        select = Select(driver.find_element_by_id("billingCountry"))
 
         email_elem.send_keys("assessment@test.com.br")
         cardnum_elem.send_keys("555555555555")
@@ -321,6 +327,7 @@ class AssessmentTestCases(unittest.TestCase):
         cardexp_elem.send_keys("0439")
         cardcvc_elem.send_keys("424")
         cardname_elem.send_keys("Selenium Test WebDriver")
+        select.select_by_value("PH")
 
         confirm_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "SubmitButton--complete")))
         confirm_elem.click()
