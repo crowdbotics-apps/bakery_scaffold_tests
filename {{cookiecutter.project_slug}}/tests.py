@@ -150,9 +150,9 @@ class TestAcceptanceStripe(unittest.TestCase):
         self.assertTrue(hasattr(res, 'group'), msg="You didn't define a cancel URL.")
 
 
-class TestAST(unittest.TestCase):
+class ASTTestCases(unittest.TestCase):
     def __init__(self, *args, **kwargs):
-        super(TestAST, self).__init__(*args, **kwargs)
+        super(ASTTestCases, self).__init__(*args, **kwargs)
         with open('client/order.html', 'r') as file_descriptor:
             self.order_html_str = file_descriptor.read()
 
