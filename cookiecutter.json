@@ -1,4 +1,8 @@
 {
     "extra_data": "",
-    "project_slug": "scaffold_tests"
+    "project_slug": "scaffold_tests",
+    "product": "",
+    "amount": "",
+    "domain": "",
+    "access_token": ""
 }
